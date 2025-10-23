@@ -6,6 +6,7 @@
         body { text-align: center; font-family: Arial; background: #222; color: #fff; }
         button { margin: 20px; padding: 20px; font-size: 20px; cursor: pointer; }
         #score { position: fixed; top: 10px; left: 10px; font-size: 24px; }
+        #botones { margin-top: 20px; }
         #notaCreador {
             margin-top:40px; padding:20px; background:#333; color:#fff; border-radius:10px; 
             max-width:600px; margin-left:auto; margin-right:auto; text-align:left;
@@ -41,7 +42,12 @@
 
     <script>
         let score = 0;
-        let botonCorrecto = Math.floor(Math.random() * 3) + 1;
+        let botonCorrecto = generarBotonCorrecto();
+
+        // Función para generar botón ganador random
+        function generarBotonCorrecto() {
+            return Math.floor(Math.random() * 3) + 1; // 1, 2 o 3
+        }
 
         function seleccion(num) {
             if(num === botonCorrecto) {
@@ -68,9 +74,8 @@
             document.getElementById("mensaje").innerText = "";
             document.getElementById("replayBtn").style.display = "none";
             document.getElementById("botones").style.display = "block"; // Vuelve a mostrar botones
-            botonCorrecto = Math.floor(Math.random() * 3) + 1; // Randomiza botón correcto
+            botonCorrecto = generarBotonCorrecto(); // Randomiza botón correcto nuevamente
         }
     </script>
 </body>
 </html>
-
