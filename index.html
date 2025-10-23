@@ -6,17 +6,9 @@
         body { text-align: center; font-family: Arial; background: #222; color: #fff; }
         button { margin: 20px; padding: 20px; font-size: 20px; cursor: pointer; }
         #score { position: fixed; top: 10px; left: 10px; font-size: 24px; }
-        /* Nota del creador */
         #notaCreador {
-            margin-top:40px; 
-            padding:20px; 
-            background:#333; 
-            color:#fff; 
-            border-radius:10px; 
-            max-width:600px; 
-            margin-left:auto; 
-            margin-right:auto; 
-            text-align:left;
+            margin-top:40px; padding:20px; background:#333; color:#fff; border-radius:10px; 
+            max-width:600px; margin-left:auto; margin-right:auto; text-align:left;
         }
     </style>
 </head>
@@ -24,7 +16,7 @@
     <div id="score">Puntuación: 0</div>
     <h1>¡Elige el botón correcto!</h1>
 
-    <div>
+    <div id="botones">
         <button onclick="seleccion(1)">Botón 1</button>
         <button onclick="seleccion(2)">Botón 2</button>
         <button onclick="seleccion(3)">Botón 3</button>
@@ -34,16 +26,14 @@
     <button id="replayBtn" onclick="reiniciar()" style="display:none;">Jugar de nuevo</button>
 
     <!-- Sonidos -->
-    <audio id="winSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
-    <audio id="loseSound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+    <audio id="winSound" src="sounds/win.mp3"></audio>
+    <audio id="loseSound" src="sounds/lose.mp3"></audio>
 
     <!-- Nota del creador -->
     <div id="notaCreador">
         <h2>Nota del creador</h2>
         <p>
-            Esto lo hice con IA pues para empezar a entender un poco el código de programación hice este juego muy pequeño ya que quiero ser un programador. 
-            Lo hice en mis peores momentos pero da igual porque no me dejaré arruinar. 
-            Esta página web estará abierta desde las 3 de la tarde o las 5 hasta las 9 de la tarde. hora colombia
+            Esto lo hice con IA para entender un poco de programación. Lo hice en mis peores momentos pero no me dejaré arruinar.
             Éxitos para tu vida a quien lea esto. <br>
             <strong>Fecha: 22 de octubre</strong>
         </p>
@@ -51,7 +41,7 @@
 
     <script>
         let score = 0;
-        let botonCorrecto = 2; // Inicial, se randomiza al reiniciar
+        let botonCorrecto = Math.floor(Math.random() * 3) + 1;
 
         function seleccion(num) {
             if(num === botonCorrecto) {
@@ -61,6 +51,9 @@
             } else {
                 document.getElementById("mensaje").innerText = "Perdiste, intenta de nuevo 😅";
                 document.getElementById("loseSound").play();
+                score = 0; // Reinicia la puntuación
+                document.getElementById("botones").style.display = "none"; // Oculta los botones
+                document.getElementById("replayBtn").style.display = "inline-block"; // Muestra botón de reinicio
             }
 
             document.getElementById("score").innerText = "Puntuación: " + score;
@@ -69,17 +62,15 @@
             if(score > 0 && score % 50 === 0) {
                 alert("🎉 ¡Felicidades! Llegaste a " + score + " puntos!");
             }
-
-            // Mostrar botón de reinicio
-            document.getElementById("replayBtn").style.display = "inline-block";
         }
 
         function reiniciar() {
             document.getElementById("mensaje").innerText = "";
             document.getElementById("replayBtn").style.display = "none";
-            // Randomizamos botón correcto
-            botonCorrecto = Math.floor(Math.random() * 3) + 1;
+            document.getElementById("botones").style.display = "block"; // Vuelve a mostrar botones
+            botonCorrecto = Math.floor(Math.random() * 3) + 1; // Randomiza botón correcto
         }
     </script>
 </body>
 </html>
+
