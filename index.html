@@ -34,8 +34,8 @@
     <div id="notaCreador">
         <h2>Nota del creador</h2>
         <p>
-            Esto lo hice con IA para entender un poco de programación. Lo hice en mis peores momentos pero no me dejaré arruinar.
-            Éxitos para tu vida a quien lea esto. <br>
+            Esto lo hice con IA para entender un poco de programación. Lo hice en mis peores momentos pero no me dejaré arruinar. 
+            Éxitos para tu vida a quien lea esto. version de el juego : V5 <br>
             <strong>Fecha: 22 de octubre</strong>
         </p>
     </div>
@@ -44,9 +44,8 @@
         let score = 0;
         let botonCorrecto = generarBotonCorrecto();
 
-        // Función para generar botón ganador random
         function generarBotonCorrecto() {
-            return Math.floor(Math.random() * 3) + 1; // 1, 2 o 3
+            return Math.floor(Math.random() * 3) + 1; // 1,2 o 3
         }
 
         function seleccion(num) {
@@ -57,15 +56,17 @@
             } else {
                 document.getElementById("mensaje").innerText = "Perdiste, intenta de nuevo 😅";
                 document.getElementById("loseSound").play();
-                score = 0; // Reinicia la puntuación
-                document.getElementById("botones").style.display = "none"; // Oculta los botones
-                document.getElementById("replayBtn").style.display = "inline-block"; // Muestra botón de reinicio
+                score = 0;
+                document.getElementById("botones").style.display = "none";
+                document.getElementById("replayBtn").style.display = "inline-block";
             }
+
+            // Randomiza el botón ganador cada vez que se presiona un botón
+            botonCorrecto = generarBotonCorrecto();
 
             document.getElementById("score").innerText = "Puntuación: " + score;
 
-            // Mensaje de felicitación cada 50 puntos
-            if(score > 0 && score % 50 === 0) {
+            if(score > 0 && score % 50 === 0){
                 alert("🎉 ¡Felicidades! Llegaste a " + score + " puntos!");
             }
         }
@@ -73,9 +74,11 @@
         function reiniciar() {
             document.getElementById("mensaje").innerText = "";
             document.getElementById("replayBtn").style.display = "none";
-            document.getElementById("botones").style.display = "block"; // Vuelve a mostrar botones
-            botonCorrecto = generarBotonCorrecto(); // Randomiza botón correcto nuevamente
+            document.getElementById("botones").style.display = "block";
+            botonCorrecto = generarBotonCorrecto(); // Random inicial
         }
     </script>
 </body>
 </html>
+
+
